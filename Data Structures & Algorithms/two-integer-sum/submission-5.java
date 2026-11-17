@@ -1,19 +1,14 @@
 class Solution {
-    public boolean isAnagram(String s, String t){
-        if(s.length() != t.length()) return false;
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> numMap = new HashMap<>();
 
-        char[] charS = s.toCharArray();
-        char[] charT = t.toCharArray();
-
-        Arrays.sort(charS);
-        Arrays.sort(charT);
-
-        String sortedS = new String(charS);
-        String sortedT = new String(charT);
-
-        if(sortedS.equals(sortedT)) return true;
-
-        return false;
-        
+        for(int i=0; i<nums.length; i++){
+            int complement = target - nums[i];
+            if(numMap.containsKey(complement)){
+                return new int[]{numMap.get(complement), i};
+            }
+            numMap.put(nums[i], i);
+        }
+        return null;
     }
 }
